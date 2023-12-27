@@ -6,7 +6,8 @@ class tik_tak_map:
         self.w = w
         self.h = h
         self.map = []
-        self.rounds = 0
+        self.rounds = 1
+        self.player_turn = 1    
     
     def creation(self): 
         # makes an array of hight = h and with = w filled with |_| 
@@ -14,8 +15,16 @@ class tik_tak_map:
    
     def display(self):
         # print(f"the with is {range(self.w)} and the hight {range(self.h)}")
-        player_turn = remainder(self.rounds, (self.rounds + 1)) # bug in this line of code 
-        print(f"round {self.rounds} player {player_turn}") 
+        #---- 
+        # player_turn = (self.rounds + 1) - self.rounds # bug in this line of code 
+        #---- 
+        match self.player_turn:
+            case 1:
+                self.player_turn = 2
+            case 2:
+                self.player_turn = 1
+
+        print(f"round {self.rounds} player {self.player_turn}") 
         for x in range(self.h): 
             print(self.map[x][:]) # print whole array using a slice
 
@@ -38,10 +47,10 @@ class tik_tak_map:
 def intro():
     print("-------------------------")
     print("  a simple tik tow game  ")
-    
+    print("-------------------------")    
 
 def main():
-    print("hello world")
+    intro()
     user_input = input()
     if user_input == "quit":    exit() 
 
@@ -54,4 +63,6 @@ m1.display()
 m1.insert(1,1,2)
 m1.display()
 m1.insert(1,0,1)  
-m1.display()  
+m1.display() 
+m1.insert(2,0,2)
+m1.display()
